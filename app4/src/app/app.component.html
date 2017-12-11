@@ -1,0 +1,87 @@
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insert">
+   เพิ่มข้อมูล
+</button>
+
+
+<div class="modal fade" id="insert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูล</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="accountNumber">Account_number</label>
+                <input type="text" class="form-control" [(ngModel)]="account_number" id="account_number" name="account_number">
+              </div>
+              <div class="form-group">
+                <label for="Branch_name">Branch_name</label>
+                <input type="text" class="form-control" [(ngModel)]="branch_name" id="branch_name" name="branch_name" >
+              </div>
+              <div class="form-group">
+                <label for="Balance">Balance</label>
+                <input type="text" class="form-control" [(ngModel)]="balance" id="balance" name="balance"  >
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-primary" (click)="addAccount(account_number,branch_name,balance)">บันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูล</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="accountNumber">Account_number</label>
+              <input type="text" class="form-control" [(ngModel)]="newaccount" id="newaccount" name="newaccount" >
+            </div>
+            <div class="form-group">
+              <label for="Branch_name">Branch_name</label>
+              <input type="text" class="form-control" [(ngModel)]="newbranch" id="newbranch" name="newbranch" >
+            </div>
+            <div class="form-group">
+              <label for="Balance">Balance</label>
+              <input type="text" class="form-control" [(ngModel)]="newbalance" id="newbalance" name="newbalance"  >
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-primary" (click)="updateAccount(newaccount,newbranch_name,newbalance)">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table border="10">
+  <tr>
+    <th>id</th>
+    <th>ชื่อ</th>
+    <th>เงิน</th>
+    <th>ตั้งค่า</th>
+  </tr>
+    <tr *ngFor="let x of data">
+    <td>{{x.account_number}}</td>
+    <td>{{x.branch_name}}</td>
+    <td>{{x.balance}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="deleteAccount(x.account_number)">ลบ</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getdataValue(x.account_number,x.branch_name,x.balance)">แก้ไข</button>
+    </td>
+  </tr>
+</table>
